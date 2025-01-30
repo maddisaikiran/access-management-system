@@ -1,0 +1,33 @@
+<div [formGroup]="form" class="course-details-form">
+
+    <mat-form-field>
+
+        <input matInput placeholder="Course title" formControlName="description" #description>
+
+        <mat-hint align="end">
+
+            {{description.value.length}} / 60
+
+        </mat-hint>
+
+        <mat-error *ngIf="courseTitle.errors?.['minlength']">
+
+            A minimum length of 5 characters is required.
+
+        </mat-error>
+
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Course Image url" formControlName="iconUrl" #iconUrl>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+
+        <textarea matInput placeholder="Description" formControlName="longDescription"
+                  cdkTextareaAutosize [cdkAutosizeMinRows]="2"
+                  [cdkAutosizeMaxRows]="5">
+        </textarea>
+
+    </mat-form-field>
+
+</div>

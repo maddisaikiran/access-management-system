@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="nav.toggle()" class="white"><mat-icon>menu</mat-icon></button>
+    <span class="logo">Access Management System</span>
+    <span class="extra"></span>
+    <span>{{loginUser()}}</span>
+    <button mat-button [matMenuTriggerFor]="profile"><mat-icon>arrow_drop_down</mat-icon></button>
+    <mat-menu #profile>
+        <button mat-menu-item (click)="goToProfile()">Profile</button>
+        <button mat-menu-item routerLink="/reset-password">Reset Password</button>
+        <button mat-menu-item [routerLink]="['/sign-in']">Logout</button>
+    </mat-menu>
+    </mat-toolbar>
+
+<mat-sidenav-container class="sidenav-wrapper">
+    
+    <mat-sidenav #nav mode="side" opened>
+        @for(item of menuList; track item) {
+            <a routerLink="{{item.code}}" color="primary">
+                <button mat-button><mat-icon>person</mat-icon>
+                <span>{{item.name}}</span></button>
+            </a>
+        }
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>     

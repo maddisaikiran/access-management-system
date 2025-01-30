@@ -1,0 +1,17 @@
+.mat-mdc-raised-button {
+    width: 100%;
+}
+
+.div-100 {
+    width: 100%;
+}
+
+.mat-mdc-card-actions {
+    width:100%;
+}
+
+.mat-mdc-card {
+    align-items: center;
+    width: 500px;
+    margin: 4% 30%;
+}

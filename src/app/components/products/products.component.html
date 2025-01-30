@@ -1,0 +1,66 @@
+
+<div class="courses-panel">
+@if(permission?.haveAdd) {
+    <div class="header">
+        <h2 class="title">All Courses</h2>
+    
+        <button mat-mini-fab routerLink="/dashboard/course/add-new-course"
+                [matTooltip]="'Create a course'" matTooltipPosition="above"
+                [matTooltipShowDelay]="1000"
+                [matTooltipHideDelay]="2000"
+                [matTooltipDisabled]="true">
+          <mat-icon class="add-course-btn">add</mat-icon>
+        </button>
+      </div>
+}    
+<mat-grid-list [cols]="cols" [rowHeight]="rowHeight" >
+
+    <mat-grid-tile *ngFor="let course of courses">
+
+        <mat-card class="course-card mat-elevation-z7">
+
+            <mat-card-header>
+
+                <mat-card-title>{{course.description}}</mat-card-title>
+
+            </mat-card-header>
+
+
+            <img mat-card-image [src]="course.iconUrl">
+
+
+
+            <mat-card-content>
+
+                <p>{{course.longDescription}}</p>
+
+            </mat-card-content>
+
+
+            <mat-card-actions class="course-actions">
+
+                <button mat-raised-button color="primary" (click)="viewCourse(course.id)">
+                    VIEW
+                </button>
+                @if(permission?.haveEdit) {
+                    <button mat-raised-button color="accent" (click)="editCourse(course.id)">
+                            EDIT
+                    </button>
+                } 
+                @if(permission?.haveDelete){
+                    <button mat-raised-button color="warn" (click)="deleteCourse(course.id)">
+                        DELETE
+                    </button>
+                }
+            </mat-card-actions>
+
+
+
+        </mat-card>
+
+    </mat-grid-tile>
+
+
+</mat-grid-list>
+<router-outlet></router-outlet>
+</div>

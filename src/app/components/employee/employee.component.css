@@ -1,0 +1,16 @@
+.table-header {
+    background-color: blue;
+    color: white;
+}
+
+.gap-10 {
+    margin-right: 10px;
+}
+
+.mat-raised-button {
+    width: auto;
+}
+
+.mat-mdc-card  {
+    margin: 2%;
+}

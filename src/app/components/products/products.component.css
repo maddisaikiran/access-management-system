@@ -1,0 +1,43 @@
+.course-card {
+    margin: 20px 10px;
+    max-width:430px;
+  }
+
+  .course-actions {
+    display: flex;
+  justify-content: center;
+}
+
+.course-actions button {
+    margin-right: 5px;
+  }
+
+  mat-card-content p{
+    padding: 10px;
+  } 
+  
+  .mat-sidenav-content {
+    margin: 0;
+  }
+
+  .courses-panel {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.title {
+    text-align: center;
+    margin-right: 15px;
+    margin-top:20px;
+  }
+  
+  h2 {
+    font-family: "Roboto";
+  }  

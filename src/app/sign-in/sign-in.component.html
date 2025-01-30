@@ -1,0 +1,63 @@
+<div class="container" [ngClass]="{ 'right-panel-active': isRightPanelActive }">
+    <div class="form-container sign-up-container mat-elevation-z4">
+      <form (submit)="onSignUp()" [formGroup]="signUpForm">
+        <h1>Create Account</h1>
+        <input type="text" placeholder="Name" #signUpNameInput formControlName="name" class="form-control"
+        [ngClass]="{
+            'input-error': signUpForm.get('name')?.invalid && signUpForm.get('name')?.touched
+          }"/>
+        <div *ngIf="signUpForm.get('name')?.invalid && signUpForm.get('name')?.touched">
+            <small *ngIf="signUpForm.get('name')?.hasError('required')">Name is required.</small>
+            <small *ngIf="signUpForm.get('name')?.hasError('minlength')">Name must be at least 5 characters</small>
+          </div>
+          <input type="text" placeholder="Enter Phone" formControlName="phone" class="form-control"
+          [ngClass]="{
+              'input-error': signUpForm.get('phone')?.invalid && signUpForm.get('phone')?.touched
+            }"/>
+          <div *ngIf="signUpForm.get('phone')?.invalid && signUpForm.get('phone')?.touched">
+              <small *ngIf="signUpForm.get('phone')?.hasError('required')">Phone is required.</small>
+              <small *ngIf="signUpForm.get('phone')?.hasError('pattern')">Entered Phone number is not 10 digit</small>
+            </div>  
+        <input type="email" placeholder="Email" formControlName="email" class="form-control"
+        [ngClass]="{
+            'input-error': signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched
+          }"/>
+        <div *ngIf="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched">
+            <small *ngIf="signUpForm.get('email')?.hasError('required')">Email is required.</small>
+            <small *ngIf="signUpForm.get('email')?.hasError('email')">Please enter a valid email address.</small>
+          </div>
+        <input type="password" placeholder="Password" formControlName="password" class="form-control"
+        [ngClass]="{
+            'input-error': signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched
+          }"/>
+        <div *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched">
+            <small *ngIf="signUpForm.get('password')?.hasError('required')">Password is required.</small>
+            <small *ngIf="signUpForm.get('password')?.hasError('minlength')">Password must be at least 8 characters long.</small>
+            <small *ngIf="signUpForm.get('password')?.hasError('pattern')">Password must contain at least one number, one uppercase letter, one lowercase letter, and one special character.</small>
+          </div>
+        <button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
+      </form>
+    </div>
+    <div class="form-container sign-in-container">
+      <form (submit)="onSignIn($event)">
+        <h1>Sign in</h1>
+        <input type="email" #signInEmailInput [(ngModel)]="userObj.email" name="email" class="form-control" placeholder="Email" />
+        <input type="password" [(ngModel)]="userObj.password" name="password" class="form-control" placeholder="Password" />
+        <button type="submit">Sign In</button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us please login with your personal info</p>
+          <button class="ghost" (click)="togglePanel(false)">Sign In</button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Hello, Friend!</h1>
+          <p>Enter your personal details and start your journey with us</p>
+          <button class="ghost" (click)="togglePanel(true)">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>

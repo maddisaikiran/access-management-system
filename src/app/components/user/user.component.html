@@ -1,0 +1,44 @@
+<mat-card>
+    <mat-card-header>
+        <h1>Users List</h1>
+    </mat-card-header>
+    <mat-card-content>
+        <table mat-table [dataSource]="dataSource"matSort>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                <td mat-cell *matCellDef="let element">{{element.name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+                <td mat-cell *matCellDef="let element">{{element.email}}</td>
+            </ng-container>
+            <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+                <td mat-cell *matCellDef="let element">{{element.phone}}</td>
+            </ng-container>
+            <ng-container matColumnDef="role">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
+                <td mat-cell *matCellDef="let element"> {{ element.userRole }}</td>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>status</th>
+                <td mat-cell *matCellDef="let element"> {{ element.status ? 'Active' : 'Inactive' }}</td>
+            </ng-container>
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Action</th>
+                <td mat-cell *matCellDef="let element">
+                    @if(element.userRole !== 'admin') {
+                        <button mat-raised-button color="primary" (click)="updateRole(element.name, element.id)"class="gap-10">Update Role</button>
+                        <button mat-raised-button  color="accent" (click)="updateStatus(element.name, element.id)">Update Status</button>
+                    } 
+                </td>
+            </ng-container>
+            <tr class="table-header" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+    </mat-card-content>
+    <br>
+        <mat-card-footer>
+            <mat-paginator [pageSizeOptions]="[3,10,20]" showFirstLastButtons></mat-paginator>
+        </mat-card-footer>
+</mat-card>
